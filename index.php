@@ -17,7 +17,7 @@
     }
 
     .main-background {
-      background-color: #666666;
+      background-color: #bfbfbf;
     }
 
     .container {
@@ -37,6 +37,7 @@
       height: 600px;
       width: 60%;
       margin-top: 100px;
+      border: 1px solid black;
     }
 
     .row {
@@ -68,10 +69,16 @@
       padding: 3px 9px;
     }
 
-    .calendar{
-      margin-left: 100px;
+    .calendar {
+      margin-left: 120px;
       text-align: center;
     }
+
+    /* .picture { */
+      /* background-image: url('./zerodamage1.png'); */
+      /* background-size: cover; */
+      /* opacity: 0.3; */
+    /* } */
   </style>
 </head>
 
@@ -114,7 +121,7 @@
     $cal[] = date("j", strtotime("$i days", strtotime($firstDay)));
   }
 
-  
+
 
   ?>
   <h1>萬年曆</h1>
@@ -124,7 +131,8 @@
       <div class="col-4 bg-primary rounded-4 left-character">
         角色
       </div>
-      <div class="col-8 bg-warning rounded-4 right-calendar">
+      <div class="col-8 rounded-4 right-calendar">
+      <div class="picture"></div>
         萬年曆
         <div class="calendar">
           <div style="display:flex;width:80%;justify-content:space-between;align-items:center">
@@ -141,36 +149,38 @@
             </a>
           </div>
           <table>
-            <tr>
-              <td>日</td>
-              <td>一</td>
-              <td>二</td>
-              <td>三</td>
-              <td>四</td>
-              <td>五</td>
-              <td>六</td>
-            </tr>
-            <?php
-            foreach ($cal as $i => $day) {
-              if ($i % 7 == 0) {
-                echo "<tr>"; 
-                               
+            
+              <tr>
+                <td>日</td>
+                <td>一</td>
+                <td>二</td>
+                <td>三</td>
+                <td>四</td>
+                <td>五</td>
+                <td>六</td>
+              </tr>
+              <?php
+              foreach ($cal as $i => $day) {
+                if ($i % 7 == 0) {
+                  echo "<tr>";
+                }
+                echo "<td>$day</td>";
+                if ($i % 7 == 6) {
+                  echo "</tr>";
+                }
               }
-              
-              echo "<td>$day</td>";
-              
-              if ($i % 7 == 6) {
-                echo "</tr>";
-              }              
-            }
-              
-            ?>
-
+              $lastspaceday = (7 * $weeks) - $monthDays;
+              // $lastspaceday 代表本該月份最後一天距離周末的天數
+              for ($i = 0; $i < $lastspaceday - $spaceDays; $i++) {
+                echo "<td></td>";
+              }
+              ?>
+            
           </table>
         </div>
+
       </div>
     </div>
-  </div>
 
 
 
