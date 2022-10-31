@@ -114,13 +114,17 @@
   $weeks = ceil(($monthDays + $spaceDays) / 7);
   // weeks 算出這個月有幾周
   // ceil函式 => 無條件進位
+  $lastspaceday = (7 * $weeks) - $monthDays;
+  // $lastspaceday 代表本該月份最後一天距離周末的天數
   for ($i = 0; $i < $spaceDays; $i++) {
     $cal[] = '';
   }
   for ($i = 0; $i < $monthDays; $i++) {
     $cal[] = date("j", strtotime("$i days", strtotime($firstDay)));
   }
-
+  for ($i = 0; $i < ($lastspaceday- $spaceDays); $i++) {
+    $cal[] = '';
+  }
 
 
   ?>
@@ -168,12 +172,7 @@
                 if ($i % 7 == 6) {
                   echo "</tr>";
                 }
-              }
-              $lastspaceday = (7 * $weeks) - $monthDays;
-              // $lastspaceday 代表本該月份最後一天距離周末的天數
-              for ($i = 0; $i < $lastspaceday - $spaceDays; $i++) {
-                echo "<td></td>";
-              }
+              }             
               ?>
             
           </table>
