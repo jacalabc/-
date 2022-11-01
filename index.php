@@ -31,6 +31,7 @@
       width: 30%;
       margin-top: 100px;
       margin-right: 40px;
+      border: 1px solid black;
     }
 
     .right-calendar {
@@ -54,31 +55,56 @@
       color: burlywood;
     }
 
-    table {
-      border-collapse: collapse;
-      width: 80%;
-    }
-
-    td:nth-child(1),
-    td:nth-child(7) {
-      background-color: pink;
-    }
-
-    table td {
-      border: 1px solid #ccc;
-      padding: 3px 9px;
-    }
 
     .calendar {
-      margin-left: 120px;
+      /* margin-left: 40px; */
       text-align: center;
     }
+    .week-footer{
+      display:flex;
+      flex-wrap: wrap;
+      width:80%;
+      margin: auto;
+    }
+    .week-footer .date{
+      border:1px solid black;
+      width:calc(100% / 7);
+      margin-left:-1px;
+      margin-top:-1px;
+    }
+    .week-footer .date:hover{
+      transform: scale(1.05);
+      background-color: lightcyan;
+    }
+    .holiday{
+      background-color: pink;
+    }
+    .week-header{      
+      display:flex;
+      width:80%;
+      margin: auto;
+      margin:0 auto
+    }
+    .header,.header-holiday{
+      display: flex;
+      width:calc(100% / 7);
+      justify-content: center;
+      border: 1px solid black;
+      margin-left: -1px;
+    }
+    .header-holiday{
+      background-color: #ff3333;
+    }
+    .time{
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .picture{
 
-    /* .picture { */
-      /* background-image: url('./zerodamage1.png'); */
-      /* background-size: cover; */
-      /* opacity: 0.3; */
-    /* } */
+    }
+
   </style>
 </head>
 
@@ -86,7 +112,7 @@
   <?php
   /*請在這裹撰寫你的萬年曆程式碼*/
   $cal = [];
-
+  $holiday=['2022-10-25'=>"光復節","2022-10-10"=>"國慶日"];
   $month = (isset($_GET['m'])) ? $_GET['m'] : date("n");
   $year = (isset($_GET['y'])) ? $_GET['y'] : date("Y");
 
@@ -132,15 +158,12 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-4 bg-primary rounded-4 left-character">
+      <div class="col-4  rounded-4 left-character">
         角色
       </div>
       <div class="col-8 rounded-4 right-calendar">
-      <div class="picture"></div>
-        萬年曆
         <div class="calendar">
-          <div style="display:flex;width:80%;justify-content:space-between;align-items:center">
-
+          <div class="time">
             <a href="?y=<?= $preYear; ?>&m=<?= $preMonth; ?>" class="premonth">
               <i class="fa-solid fa-arrow-left"></i>
               上一個月
@@ -152,30 +175,43 @@
               <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
-          <table>
+          
             
-              <tr>
-                <td>日</td>
-                <td>一</td>
-                <td>二</td>
-                <td>三</td>
-                <td>四</td>
-                <td>五</td>
-                <td>六</td>
-              </tr>
+          <div class="week-header">
+              <div class="header-holiday">日</div>
+              <div class="header">一</div>
+              <div class="header">二</div>
+              <div class="header">三</div>
+              <div class="header">四</div>
+              <div class="header">五</div>
+              <div class="header-holiday">六</div>
+          </div>
+              <div class="week-footer">
               <?php
               foreach ($cal as $i => $day) {
-                if ($i % 7 == 0) {
-                  echo "<tr>";
+                if($day!=""){
+                  $show=explode("-",$day)[0];
+                }else{
+                  $show="";
                 }
-                echo "<td>$day</td>";
-                if ($i % 7 == 6) {
-                  echo "</tr>";
-                }
-              }             
+                if(array_key_exists($day,$holiday)){
+
+                  echo "<div class='date holiday'>";
+                  echo $show;
+                  echo "<div>{$holiday[$day]}</div>";
+                  echo "</div>";
+              }else{
+          
+                  echo "<div class='date'>$show</div>";
+              }
+          }
+                          
               ?>
-            
-          </table>
+            </div>
+            <br>
+            <div class="picture">
+          <img src="./zerodamage1.png" alt="" style="max-width: 745px ;max-height:300px;">
+          </div>
         </div>
 
       </div>
