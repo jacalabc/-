@@ -70,18 +70,18 @@
     .week-header{      
       display:flex;
       width:80%;
-      margin: auto;
-      margin:0 auto
+      margin:0 auto;
     }
     .header,.header-holiday{
       display: flex;
       width:calc(100% / 7);
       justify-content: center;
-      border: 1px solid black;
       margin-left: -1px;
+      margin-bottom: 20px;
     }
     .header-holiday{
       background-color: #ff3333;
+      border-right: 1px solid black;
     }
     
     .week-footer{
@@ -91,7 +91,6 @@
       margin: auto;
     }
     .week-footer .date{
-      border:1px solid black;
       height: 75px;
       width: 75px;
       width:calc(100% / 7);
@@ -114,9 +113,9 @@
   <?php
   /*請在這裹撰寫你的萬年曆程式碼*/
   $cal = [];
-  $holiday=["2022-10-25"=>"光復節","2022-10-10"=>"國慶日"];
   $month = (isset($_GET['m'])) ? $_GET['m'] : date("n");
   $year = (isset($_GET['y'])) ? $_GET['y'] : date("Y");
+  $holiday=["$year-10-25"=>"光復節","$year-10-10"=>"國慶日"];
 
   $nextMonth = $month + 1;
   $preMonth = $month - 1;
@@ -160,7 +159,19 @@
   <div class="container">
     <div class="row">
       <div class="col-4  rounded-4 left-character">
-
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://picsum.photos/id/49/1200/300" class="d-block w-100 h-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://picsum.photos/id/25/1200/300" class="d-block w-100 h-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://picsum.photos/id/29/1200/300" class="d-block w-100 h-100" alt="...">
+    </div>
+  </div>
+</div>
       </div>
       <div class="col-8 rounded-4 right-calendar">
         <div class="calendar">
