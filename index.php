@@ -23,13 +23,13 @@
     .container {
       width: 80%;
       border: 1px solid black;
-      height: 800px
+      height: 700px
     }
 
     .left-character {
       height: 600px;
       width: 30%;
-      margin-top: 100px;
+      margin-top: 50px;
       margin-right: 40px;
       border: 1px solid black;
     }
@@ -37,7 +37,7 @@
     .right-calendar {
       height: 600px;
       width: 60%;
-      margin-top: 100px;
+      margin-top: 50px;
       border: 1px solid black;
     }
 
@@ -60,24 +60,12 @@
       /* margin-left: 40px; */
       text-align: center;
     }
-    .week-footer{
-      display:flex;
-      flex-wrap: wrap;
-      width:80%;
-      margin: auto;
-    }
-    .week-footer .date{
-      border:1px solid black;
-      width:calc(100% / 7);
-      margin-left:-1px;
-      margin-top:-1px;
-    }
-    .week-footer .date:hover{
-      transform: scale(1.05);
-      background-color: lightcyan;
-    }
-    .holiday{
-      background-color: pink;
+    .time{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
     .week-header{      
       display:flex;
@@ -95,14 +83,28 @@
     .header-holiday{
       background-color: #ff3333;
     }
-    .time{
-      display: flex;
-      justify-content: space-around;
-      margin-top: 20px;
-      margin-bottom: 20px;
+    
+    .week-footer{
+      display:flex;
+      flex-wrap: wrap;
+      width:80%;
+      margin: auto;
     }
-    .picture{
+    .week-footer .date{
+      border:1px solid black;
+      height: 75px;
+      width: 75px;
+      width:calc(100% / 7);
+      margin-left:-1px;
+      margin-top:-1px;
+    }
 
+    .week-footer .date:hover{
+      transform: scale(1.05);
+      background-color: lightcyan;
+    }
+    .holiday{
+      background-color: pink;
     }
 
   </style>
@@ -112,7 +114,7 @@
   <?php
   /*請在這裹撰寫你的萬年曆程式碼*/
   $cal = [];
-  $holiday=['2022-10-25'=>"光復節","2022-10-10"=>"國慶日"];
+  $holiday=["2022-10-25"=>"光復節","2022-10-10"=>"國慶日"];
   $month = (isset($_GET['m'])) ? $_GET['m'] : date("n");
   $year = (isset($_GET['y'])) ? $_GET['y'] : date("Y");
 
@@ -146,7 +148,8 @@
     $cal[] = '';
   }
   for ($i = 0; $i < $monthDays; $i++) {
-    $cal[] = date("j", strtotime("$i days", strtotime($firstDay)));
+    // $cal[] = date("j", strtotime("$i days", strtotime($firstDay)));
+    $cal[] = date("Y-m-j", strtotime("$i days", strtotime($firstDay)));
   }
   for ($i = 0; $i < ($lastspaceday- $spaceDays); $i++) {
     $cal[] = '';
@@ -154,12 +157,10 @@
 
 
   ?>
-  <h1>萬年曆</h1>
-
   <div class="container">
     <div class="row">
       <div class="col-4  rounded-4 left-character">
-        角色
+
       </div>
       <div class="col-8 rounded-4 right-calendar">
         <div class="calendar">
@@ -190,28 +191,21 @@
               <?php
               foreach ($cal as $i => $day) {
                 if($day!=""){
-                  $show=explode("-",$day)[0];
+                  $show=explode("-",$day)[2];
                 }else{
                   $show="";
                 }
                 if(array_key_exists($day,$holiday)){
-
                   echo "<div class='date holiday'>";
                   echo $show;
                   echo "<div>{$holiday[$day]}</div>";
                   echo "</div>";
-              }else{
-          
+              }else{          
                   echo "<div class='date'>$show</div>";
               }
-          }
-                          
+          }                          
               ?>
             </div>
-            <br>
-            <div class="picture">
-          <img src="./zerodamage1.png" alt="" style="max-width: 745px ;max-height:300px;">
-          </div>
         </div>
 
       </div>
