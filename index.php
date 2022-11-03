@@ -17,37 +17,36 @@
     }
 
     .main-background {
-      background-color: #bfbfbf;
+      /* background-color: #bfbfbf; */
+      background-image: url('UwU.png');
+      backdrop-filter: blur(5px);
     }
 
     .container {
-      width: 80%;
+      margin-top: 150px;
+      width: 1440px;
       border: 1px solid black;
-      height: 700px
+      height: 550px;
     }
-
-    .left-character {
-      height: 600px;
-      width: 30%;
-      margin-top: 50px;
-      margin-right: 40px;
-      border: 1px solid black;
-    }
-
-    .right-calendar {
-      height: 600px;
+    .calendar-base {
+      height: 470px;
       width: 60%;
-      margin-top: 50px;
       border: 1px solid black;
+      margin-top: 38px;
     }
-
-    .row {
+    .ZDalliance{
+      margin-left: 30px;
+    }
+   .row {
       justify-content: center;
     }
 
     .nextmonth,
     .premonth {
       text-decoration: none;
+    }
+    a{
+      color:black;
     }
 
     .premonth:hover,
@@ -60,49 +59,52 @@
       /* margin-left: 40px; */
       text-align: center;
     }
-    .time{
+
+    .time {
       display: flex;
       justify-content: space-around;
       align-items: center;
       margin-top: 20px;
       margin-bottom: 20px;
     }
-    .week-header{      
-      display:flex;
-      width:80%;
-      margin:0 auto;
-    }
-    .header,.header-holiday{
+
+    .week-header {
       display: flex;
-      width:calc(100% / 7);
-      justify-content: center;
-      margin-left: -1px;
-      margin-bottom: 20px;
-    }
-    .header-holiday{
-      background-color: #ff3333;
-      border-right: 1px solid black;
-    }
-    
-    .week-footer{
-      display:flex;
-      flex-wrap: wrap;
-      width:80%;
-      margin: auto;
-    }
-    .week-footer .date{
-      height: 75px;
-      width: 75px;
-      width:calc(100% / 7);
-      margin-left:-1px;
-      margin-top:-1px;
+      width: 80%;
+      margin: 0 auto;
     }
 
-    .week-footer .date:hover{
+    .header,
+    .header-holiday {
+      display: flex;
+      width: calc(100% / 7);
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .header-holiday {
+      background-color: #ff3333;
+    }
+
+    .week-footer {
+      display: flex;
+      flex-wrap: wrap;
+      width: 80%;
+      margin: auto;
+    }
+
+    .week-footer .date {
+      height: 50px;
+      width: 50px;
+      width: calc(100% / 7);
+    }
+
+    .week-footer .date:hover {
       transform: scale(1.05);
       background-color: lightcyan;
     }
-    .holiday{
+
+    .holiday {
       background-color: pink;
     }
 
@@ -115,7 +117,7 @@
   $cal = [];
   $month = (isset($_GET['m'])) ? $_GET['m'] : date("n");
   $year = (isset($_GET['y'])) ? $_GET['y'] : date("Y");
-  $holiday=["$year-10-25"=>"光復節","$year-10-10"=>"國慶日"];
+  $holiday = ["$year-10-25" => "光復節", "$year-10-10" => "國慶日"];
 
   $nextMonth = $month + 1;
   $preMonth = $month - 1;
@@ -150,30 +152,14 @@
     // $cal[] = date("j", strtotime("$i days", strtotime($firstDay)));
     $cal[] = date("Y-m-j", strtotime("$i days", strtotime($firstDay)));
   }
-  for ($i = 0; $i < ($lastspaceday- $spaceDays); $i++) {
+  for ($i = 0; $i < ($lastspaceday - $spaceDays); $i++) {
     $cal[] = '';
   }
-
-
   ?>
   <div class="container">
-    <div class="row">
-      <div class="col-4  rounded-4 left-character">
-      <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="https://picsum.photos/id/49/1200/300" class="d-block w-100 h-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="https://picsum.photos/id/25/1200/300" class="d-block w-100 h-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="https://picsum.photos/id/29/1200/300" class="d-block w-100 h-100" alt="...">
-    </div>
-  </div>
-</div>
-      </div>
-      <div class="col-8 rounded-4 right-calendar">
+    <div class="row">      
+      <div class="col-8 rounded-4 calendar-base">
+        
         <div class="calendar">
           <div class="time">
             <a href="?y=<?= $preYear; ?>&m=<?= $preMonth; ?>" class="premonth">
@@ -187,44 +173,75 @@
               <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
-          
-            
+
+
           <div class="week-header">
-              <div class="header-holiday">日</div>
-              <div class="header">一</div>
-              <div class="header">二</div>
-              <div class="header">三</div>
-              <div class="header">四</div>
-              <div class="header">五</div>
-              <div class="header-holiday">六</div>
+            <div class="header-holiday">日</div>
+            <div class="header">一</div>
+            <div class="header">二</div>
+            <div class="header">三</div>
+            <div class="header">四</div>
+            <div class="header">五</div>
+            <div class="header-holiday">六</div>
           </div>
-              <div class="week-footer">
-              <?php
-              foreach ($cal as $i => $day) {
-                if($day!=""){
-                  $show=explode("-",$day)[2];
-                }else{
-                  $show="";
-                }
-                if(array_key_exists($day,$holiday)){
-                  echo "<div class='date holiday'>";
-                  echo $show;
-                  echo "<div>{$holiday[$day]}</div>";
-                  echo "</div>";
-              }else{          
-                  echo "<div class='date'>$show</div>";
+          <div class="week-footer">
+            <?php
+            foreach ($cal as $i => $day) {
+              if ($day != "") {
+                $show = explode("-", $day)[2];
+              } else {
+                $show = "";
               }
-          }                          
-              ?>
-            </div>
+              if (array_key_exists($day, $holiday)) {
+                echo "<div class='date holiday'>";
+                echo $show;
+                echo "<div>{$holiday[$day]}</div>";
+                echo "</div>";
+              } else {
+                echo "<div class='date'>$show</div>";
+              }
+            }
+            ?>
+          </div>
         </div>
 
       </div>
+      <div class="col-4 ZDalliance">
+      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active" style="margin-top:150px;">
+      <img src="./ZD01.png" class="d-block w-100" alt="...">
     </div>
-
-
-
-
+    <div class="carousel-item" style="margin-top:150px;">
+      <img src="./ZD02.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item" style="margin-top:150px;">
+      <img src="./ZD03.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item" style="margin-top:150px;">
+      <img src="./ZD04.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item" style="margin-top:150px;">
+      <img src="./ZD05.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item" style="margin-top:150px;">
+      <img src="./ZD06.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item" style="margin-top:150px;">
+      <img src="./ZD07.png" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true" style="margin-top:150px;"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true" style="margin-top:150px;"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+      </div>
+    </div>
 </body>
 
 </html>
