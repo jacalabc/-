@@ -18,7 +18,7 @@
 
     .main-background {
       /* background-color: #bfbfbf; */
-      background-image: url('UwU.png');
+      background: url('UwU.png') no-repeat;
       backdrop-filter: blur(5px);
     }
 
@@ -28,16 +28,19 @@
       border: 1px solid black;
       height: 550px;
     }
+
     .calendar-base {
       height: 470px;
       width: 60%;
       border: 1px solid black;
       margin-top: 38px;
     }
-    .ZDalliance{
+
+    .ZDalliance {
       margin-left: 30px;
     }
-   .row {
+
+    .row {
       justify-content: center;
     }
 
@@ -45,12 +48,14 @@
     .premonth {
       text-decoration: none;
     }
-    a{
-      color:black;
+
+    a {
+      color: black;
     }
 
     .premonth:hover,
-    .nextmonth:hover {
+    .nextmonth:hover,
+    .todayBtn:hover {
       color: burlywood;
     }
 
@@ -62,10 +67,15 @@
 
     .time {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-around;
       align-items: center;
       margin-top: 20px;
       margin-bottom: 20px;
+    }
+
+    .time h1 {
+      width: 100%;
     }
 
     .week-header {
@@ -83,7 +93,8 @@
     }
 
     .header-holiday {
-      background-color: #ff3333;
+      background-color: #ff8533;
+      border-radius: 10px;
     }
 
     .week-footer {
@@ -97,17 +108,26 @@
       height: 50px;
       width: 50px;
       width: calc(100% / 7);
+      border-radius: 10px;
     }
 
     .week-footer .date:hover {
       transform: scale(1.05);
       background-color: lightcyan;
+      border-radius: 10px;
     }
 
     .holiday {
       background-color: pink;
     }
 
+    .today {
+      background-color: #80ffbf;
+    }
+
+    .todayBtn {
+      text-decoration: none;
+    }
   </style>
 </head>
 
@@ -118,6 +138,7 @@
   $month = (isset($_GET['m'])) ? $_GET['m'] : date("n");
   $year = (isset($_GET['y'])) ? $_GET['y'] : date("Y");
   $holiday = ["$year-10-25" => "光復節", "$year-10-10" => "國慶日"];
+  $today = date("Y-n-j");
 
   $nextMonth = $month + 1;
   $preMonth = $month - 1;
@@ -134,6 +155,7 @@
   }
 
   $firstDay = $year . "-" . $month . "-1";
+  $nextmonthfirstDay = $year . "-" . $month+1 . "-1";
   $firstDayWeek = date("w", strtotime($firstDay));
   $monthDays = date("t", strtotime($firstDay));
   $lastday = $year . "-" . $month . "-" . $monthDays;
@@ -157,17 +179,24 @@
   }
   ?>
   <div class="container">
-    <div class="row">      
+    <div class="row">
       <div class="col-8 rounded-4 calendar-base">
-        
+
         <div class="calendar">
           <div class="time">
+
+            <h1><?= $year; ?> 年 <?= $month; ?> 月份</h1>
+
             <a href="?y=<?= $preYear; ?>&m=<?= $preMonth; ?>" class="premonth">
               <i class="fa-solid fa-arrow-left"></i>
               上一個月
             </a>
 
-            <h1><?= $year; ?> 年 <?= $month; ?> 月份</h1>
+            <a href="?j=<?= $today; ?>" class="todayBtn">
+              <i class="fa-solid fa-calendar-day"></i>
+              今日
+
+            </a>
 
             <a href="?y=<?= $nextYear; ?>&m=<?= $nextMonth; ?>" class="nextmonth">下一個月
               <i class="fa-solid fa-arrow-right"></i>
@@ -192,13 +221,22 @@
               } else {
                 $show = "";
               }
-              if (array_key_exists($day, $holiday)) {
-                echo "<div class='date holiday'>";
+              if ($day == $today) {
+                echo "<div class='date today'>";
                 echo $show;
-                echo "<div>{$holiday[$day]}</div>";
+                if (array_key_exists($day, $holiday)) {
+                  echo "<div>{$holiday[$day]}</div>";
+                }
                 echo "</div>";
               } else {
-                echo "<div class='date'>$show</div>";
+                if (array_key_exists($day, $holiday)) {
+                  echo "<div class='date holiday'>";
+                  echo $show;
+                  echo "<div>{$holiday[$day]}</div>";
+                  echo "</div>";
+                } else {
+                  echo "<div class='date'>$show</div>";
+                }
               }
             }
             ?>
@@ -207,39 +245,39 @@
 
       </div>
       <div class="col-4 ZDalliance">
-      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active" style="margin-top:150px;">
-      <img src="./ZD01.png" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item" style="margin-top:150px;">
-      <img src="./ZD02.png" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item" style="margin-top:150px;">
-      <img src="./ZD03.png" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item" style="margin-top:150px;">
-      <img src="./ZD04.png" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item" style="margin-top:150px;">
-      <img src="./ZD05.png" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item" style="margin-top:150px;">
-      <img src="./ZD06.png" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item" style="margin-top:150px;">
-      <img src="./ZD07.png" class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true" style="margin-top:150px;"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true" style="margin-top:150px;"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active" style="margin-top:150px;">
+              <img src="./ZD01.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" style="margin-top:150px;">
+              <img src="./ZD02.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" style="margin-top:150px;">
+              <img src="./ZD03.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" style="margin-top:150px;">
+              <img src="./ZD04.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" style="margin-top:150px;">
+              <img src="./ZD05.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" style="margin-top:150px;">
+              <img src="./ZD06.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" style="margin-top:150px;">
+              <img src="./ZD07.png" class="d-block w-100" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true" style="margin-top:150px;"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true" style="margin-top:150px;"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
       </div>
     </div>
 </body>
