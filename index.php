@@ -16,10 +16,11 @@
       box-sizing: border-box;
     }
 
-    .main-background {
+    .main-background{
       /* background-color: #bfbfbf; */
       background: url('UwU.png') no-repeat;
       backdrop-filter: blur(5px);
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     .container {
@@ -34,10 +35,17 @@
       width: 60%;
       border: 1px solid black;
       margin-top: 38px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.40);
     }
 
     .ZDalliance {
+      margin-top: 50px;
+      margin-bottom: 10px;
       margin-left: 30px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    .ZDpicture{
+      margin-top: -40px;
     }
 
     .row {
@@ -171,7 +179,6 @@
     $cal[] = '';
   }
   for ($i = 0; $i < $monthDays; $i++) {
-    // $cal[] = date("j", strtotime("$i days", strtotime($firstDay)));
     $cal[] = date("Y-m-j", strtotime("$i days", strtotime($firstDay)));
   }
   for ($i = 0; $i < ($lastspaceday - $spaceDays); $i++) {
@@ -248,33 +255,33 @@
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active" style="margin-top:150px;">
-              <img src="./ZD01.png" class="d-block w-100" alt="...">
+              <img src="./ZD01.png" class=" w-100 ZDpicture" alt="...">
             </div>
             <div class="carousel-item" style="margin-top:150px;">
-              <img src="./ZD02.png" class="d-block w-100" alt="...">
+              <img src="./ZD02.png" class=" w-100 ZDpicture" alt="...">
             </div>
             <div class="carousel-item" style="margin-top:150px;">
-              <img src="./ZD03.png" class="d-block w-100" alt="...">
+              <img src="./ZD03.png" class=" w-100 ZDpicture" alt="...">
             </div>
             <div class="carousel-item" style="margin-top:150px;">
-              <img src="./ZD04.png" class="d-block w-100" alt="...">
+              <img src="./ZD04.png" class=" w-100 ZDpicture" alt="...">
             </div>
             <div class="carousel-item" style="margin-top:150px;">
-              <img src="./ZD05.png" class="d-block w-100" alt="...">
+              <img src="./ZD05.png" class=" w-100 ZDpicture" alt="...">
             </div>
             <div class="carousel-item" style="margin-top:150px;">
-              <img src="./ZD06.png" class="d-block w-100" alt="...">
+              <img src="./ZD06.png" class=" w-100 ZDpicture" alt="...">
             </div>
             <div class="carousel-item" style="margin-top:150px;">
-              <img src="./ZD07.png" class="d-block w-100" alt="...">
+              <img src="./ZD07.png" class=" w-100 ZDpicture" alt="...">
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true" style="margin-top:150px;"></span>
+            <span class="carousel-control-prev-icon" aria-hidden="true" style="margin-top:120px;"></span>
             <span class="visually-hidden">Previous</span>
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true" style="margin-top:150px;"></span>
+            <span class="carousel-control-next-icon" aria-hidden="true" style="margin-top:120px;"></span>
             <span class="visually-hidden">Next</span>
           </button>
         </div>
