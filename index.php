@@ -16,7 +16,7 @@
       box-sizing: border-box;
     }
 
-    .main-background{
+    .main-background {
       /* background-color: #bfbfbf; */
       background: url('UwU.png') no-repeat;
       backdrop-filter: blur(5px);
@@ -44,7 +44,8 @@
       margin-left: 30px;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
-    .ZDpicture{
+
+    .ZDpicture {
       margin-top: -40px;
     }
 
@@ -139,7 +140,7 @@
   </style>
 </head>
 
-<body class="main-background">
+<body class="main-background" onload="startTime()">
   <?php
   /*請在這裹撰寫你的萬年曆程式碼*/
   $cal = [];
@@ -163,7 +164,7 @@
   }
 
   $firstDay = $year . "-" . $month . "-1";
-  $nextmonthfirstDay = $year . "-" . $month+1 . "-1";
+  $nextmonthfirstDay = $year . "-" . $month + 1 . "-1";
   $firstDayWeek = date("w", strtotime($firstDay));
   $monthDays = date("t", strtotime($firstDay));
   $lastday = $year . "-" . $month . "-" . $monthDays;
@@ -251,7 +252,26 @@
         </div>
 
       </div>
+      <!-- 圖片 -->
       <div class="col-4 ZDalliance">
+        <!-- 時鐘 -->
+        <div class="container-clock">
+          <div class="clock-datetime">
+            <div class="clock-time">
+              <span id="hour">00</span>:
+              <span id="minutes">00</span>:
+              <span id="seconds">00</span>
+              <span id="period">AM</span>
+            </div>
+          </div>
+          <div class="date">
+            <span id="dayname">星期</span>,
+            <span id="month">月</span>
+            <span id="daynumber">00</span>,
+            <span id="year">year</span>年
+          </div>
+        </div>
+
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active" style="margin-top:150px;">
@@ -287,6 +307,8 @@
         </div>
       </div>
     </div>
+
+    <script src="./script.js"></script>
 </body>
 
 </html>
