@@ -13,11 +13,11 @@
   <style>
     /*請在這裹撰寫你的CSS*/
     * {
-      box-sizing: border-box;
+      box-sizing: border-box;     
     }
 
     .main-background {
-      /* background-color: #bfbfbf; */
+      margin-top: -30px;
       background: url('UwU.png') no-repeat;
       backdrop-filter: blur(5px);
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -27,15 +27,30 @@
       margin-top: 150px;
       width: 1440px;
       border: 1px solid black;
-      height: 550px;
+      height: 700px;
     }
 
     .calendar-base {
-      height: 470px;
+      height: 620px;
       width: 60%;
       border: 1px solid black;
       margin-top: 38px;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.40);
+    }
+
+    .container-clock {
+      margin-top: 50px;
+      text-align: center;
+      border: 3px solid #ffcc00;
+      color: #b38f00;
+      border-radius: 40px;
+      transition: 0.5s;
+    }
+
+    .container-clock:hover {
+      background-color: #e6b800;
+      color: black;
+      box-shadow: 0 0 30px #e6b800;
     }
 
     .ZDalliance {
@@ -46,7 +61,13 @@
     }
 
     .ZDpicture {
-      margin-top: -40px;
+      margin-top: -100px;
+    }
+    .ZDicon{
+      width: inherit;
+      margin-left: 130px;
+      margin-top: 35px;
+      box-shadow: 10px 10px 3px #ff0080;
     }
 
     .row {
@@ -70,7 +91,7 @@
 
 
     .calendar {
-      /* margin-left: 40px; */
+      margin-top: 35px;
       text-align: center;
     }
 
@@ -114,14 +135,15 @@
     }
 
     .week-footer .date {
-      height: 50px;
-      width: 50px;
+      height: 70px;
+      width: 70px;
       width: calc(100% / 7);
       border-radius: 10px;
+      overflow:auto;
     }
 
     .week-footer .date:hover {
-      transform: scale(1.05);
+      transform: scale(1.2);
       background-color: lightcyan;
       border-radius: 10px;
     }
@@ -146,7 +168,20 @@
   $cal = [];
   $month = (isset($_GET['m'])) ? $_GET['m'] : date("n");
   $year = (isset($_GET['y'])) ? $_GET['y'] : date("Y");
-  $holiday = ["$year-10-25" => "光復節", "$year-10-10" => "國慶日"];
+  $holiday = [
+    "2014-04-25" => "夢幻之星 Online 2台服公測",
+    "2017-04-25" => "夢幻之星 Online 2台服結束營運",
+    "2020-08-5" => "夢幻之星 Online 2國際服開始營運",
+    "2021-06-9" => "PSO2 NGS大型內容更新",
+    "2021-07-29" => "加入公會ZeroDamage",
+    "2022-07-9" => "開始打CM3任務",
+    "2022-07-16" => "角色大整形",
+    "$year-01-1" => "元旦",
+    "$year-02-28" => "和平紀念日",
+    "$year-04-4" => "兒童節",
+    "$year-10-25" => "光復節",
+    "$year-10-10" => "國慶日"
+  ];
   $today = date("Y-n-j");
 
   $nextMonth = $month + 1;
@@ -193,14 +228,14 @@
         <div class="calendar">
           <div class="time">
 
-            <h1><?= $year; ?> 年 <?= $month; ?> 月份</h1>
+            <h1><?= $year; ?> 年 <?= $month; ?> 月</h1>
 
             <a href="?y=<?= $preYear; ?>&m=<?= $preMonth; ?>" class="premonth">
               <i class="fa-solid fa-arrow-left"></i>
               上一個月
             </a>
 
-            <a href="?j=<?= $today; ?>" class="todayBtn">
+            <a href="?d=<?= $today; ?>" class="todayBtn">
               <i class="fa-solid fa-calendar-day"></i>
               今日
 
@@ -265,10 +300,10 @@
             </div>
           </div>
           <div class="date">
-            <span id="dayname">星期</span>,
-            <span id="month">月</span>
-            <span id="daynumber">00</span>,
-            <span id="year">year</span>年
+            <span id="year">year</span>年 -
+            <span id="month">月</span> -
+            <span id="daynumber">00</span>日&nbsp;
+            <span id="dayname">星期</span>
           </div>
         </div>
 
@@ -297,14 +332,16 @@
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true" style="margin-top:120px;"></span>
+            <span class="carousel-control-prev-icon" aria-hidden="true" style="margin-top:60px;"></span>
             <span class="visually-hidden">Previous</span>
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true" style="margin-top:120px;"></span>
+            <span class="carousel-control-next-icon" aria-hidden="true" style="margin-top:60px;"></span>
             <span class="visually-hidden">Next</span>
           </button>
         </div>
+
+        <img src="./ZD.png" alt="" class="ZDicon">
       </div>
     </div>
 
