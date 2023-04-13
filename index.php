@@ -18,7 +18,7 @@
 
     .main-background {
       margin-top: -30px;
-      background: url('UwU.png') no-repeat;
+      background: url('./picture/UwU.png') no-repeat;
       backdrop-filter: blur(5px);
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
@@ -310,25 +310,25 @@
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active" style="margin-top:150px;">
-              <img src="./ZD01.png" class=" w-100 ZDpicture" alt="...">
+              <img src="./picture/ZD01.png" class=" w-100 ZDpicture" alt="...">
             </div>
             <div class="carousel-item" style="margin-top:150px;">
-              <img src="./ZD02.png" class=" w-100 ZDpicture" alt="...">
+              <img src="./picture/ZD02.png" class=" w-100 ZDpicture" alt="...">
             </div>
             <div class="carousel-item" style="margin-top:150px;">
-              <img src="./ZD03.png" class=" w-100 ZDpicture" alt="...">
+              <img src="./picture/ZD03.png" class=" w-100 ZDpicture" alt="...">
             </div>
             <div class="carousel-item" style="margin-top:150px;">
-              <img src="./ZD04.png" class=" w-100 ZDpicture" alt="...">
+              <img src="./picture/ZD04.png" class=" w-100 ZDpicture" alt="...">
             </div>
             <div class="carousel-item" style="margin-top:150px;">
-              <img src="./ZD05.png" class=" w-100 ZDpicture" alt="...">
+              <img src="./picture/ZD05.png" class=" w-100 ZDpicture" alt="...">
             </div>
             <div class="carousel-item" style="margin-top:150px;">
-              <img src="./ZD06.png" class=" w-100 ZDpicture" alt="...">
+              <img src="./picture/ZD06.png" class=" w-100 ZDpicture" alt="...">
             </div>
             <div class="carousel-item" style="margin-top:150px;">
-              <img src="./ZD07.png" class=" w-100 ZDpicture" alt="...">
+              <img src="./picture/ZD07.png" class=" w-100 ZDpicture" alt="...">
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -341,7 +341,7 @@
           </button>
         </div>
 
-        <img src="./ZD.png" alt="" class="ZDicon">
+        <img src="./picture/ZD.png" alt="" class="ZDicon">
       </div>
     </div>
 
